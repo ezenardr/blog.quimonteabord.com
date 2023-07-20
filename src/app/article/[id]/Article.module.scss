@@ -1,0 +1,25 @@
+.main {
+    background-color: var(--color-bg-shade);
+    padding-top: 2rem;
+
+    article {
+        padding-top: 10rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 50%;
+        margin: 0 auto;
+
+        h1,
+        p {
+            align-self: flex-start;
+        }
+        h1 {
+            color: var(--color-primary);
+            font-size: 3rem;
+        }
+        p {
+            font-size: 2.2rem;
+        }
+    }
+}

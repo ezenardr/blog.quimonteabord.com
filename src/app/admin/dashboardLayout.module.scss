@@ -1,0 +1,17 @@
+.dashboardContainer {
+    background-color: var(--color-bg-shade);
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+
+    .dashboard {
+        width: 100%;
+        max-width: 136rem;
+        padding: 2rem;
+
+        .flexContainer {
+            display: flex;
+            height: 100%;
+        }
+    }
+}
