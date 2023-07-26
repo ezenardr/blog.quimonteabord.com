@@ -66,7 +66,7 @@ function PostForm({
         category: string
     ) {
         try {
-            fetch('http://localhost:3000/api/posts/newPost', {
+            fetch('/api/posts/newPost', {
                 method: 'POST',
                 body: JSON.stringify({
                     title,

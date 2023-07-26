@@ -10,7 +10,7 @@ export default function Article({ params }: { params: { id: string } }) {
     const id = params.id;
     const fetcher = (args: string) => fetch(args).then((res) => res.json());
     const { data, error, isLoading } = useSWR(
-        `http://localhost:3000/api/posts/getPost/${id}`,
+        `/api/posts/getPost/${id}`,
         fetcher
     );
     if (error) {

@@ -1,5 +1,4 @@
 'use client';
-import { useState, useEffect } from 'react';
 import useSWR from 'swr';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
@@ -26,35 +25,11 @@ export type dataProps = DataProps | null | undefined;
 export default function Main() {
     const fetcher = (args: string) => fetch(args).then((res) => res.json());
     const { data, error, isLoading } = useSWR(
-        'http://localhost:3000/api/posts/getAllPosts',
+        '/api/posts/getAllPosts',
         fetcher
     );
-    // if (error) {
-    //     return <Modal title="Erreur">Failed to fetch data</Modal>;
-    // }
-    // if (isLoading) return <Loader/>;
-    // const [data, setData] = useState<dataProps>();
-    // const [loading, setLoading] = useState<boolean>(true);
     const { data: session } = useSession();
     const user = session?.user;
-
-    // async function fetchData() {
-    //     try {
-    //         const res = await fetch(
-    //             'http://localhost:3000/api/posts/getAllPosts'
-    //         );
-    //         const jsonData = await res.json();
-    //         setData(jsonData);
-    //         setLoading(false);
-    //         return jsonData;
-    //     } catch (error) {
-    //         return error;
-    //     }
-    // }
-    // useEffect(() => {
-    //     fetchData();
-    // }, []);
-
     return (
         <>
             <div className={Styles.flex1}>

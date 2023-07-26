@@ -19,7 +19,7 @@ interface PostProps {
 export default function Articles() {
     const fetcher = (args: string) => fetch(args).then((res) => res.json());
     const { data, error, isLoading } = useSWR(
-        'http://localhost:3000/api/posts/getAllPosts',
+        '/api/posts/getAllPosts',
         fetcher
     );
     if (error) {
