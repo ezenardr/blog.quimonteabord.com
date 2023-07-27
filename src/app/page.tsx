@@ -1,7 +1,10 @@
+import Link from 'next/link';
 import Navigation from '@/components/Navigation';
-import React from 'react';
+import LoaderWhite from '@/components/LoaderWhite';
+import Card from '@/components/Card';
+import { prismaClient } from '@/lib/prismaClient';
+import { PostProps } from '../../types/post';
 import Styles from './blog.module.scss';
-import Articles from './Articles';
 
 export default function BlogPage() {
     return (
@@ -19,5 +22,42 @@ export default function BlogPage() {
                 <Articles />
             </main>
         </>
+    );
+}
+export async function Articles() {
+    const prisma = prismaClient;
+    const posts: Array<PostProps> = await prisma.post.findMany();
+    return (
+        <ul className={Styles.articleList}>
+            {!posts && <LoaderWhite />}
+            {posts &&
+                posts.map(
+                    ({ id, pictures, title, updatedAt, category, author }) => {
+                        const date = new Date(updatedAt);
+                        const formattedDate = date?.toLocaleDateString(
+                            'fr-FR',
+                            {
+                                weekday: 'long',
+                                year: 'numeric',
+                                month: 'long',
+                                day: 'numeric',
+                            }
+                        );
+                        return (
+                            <li key={id}>
+                                <Link href={`/article/${id}`}>
+                                    <Card
+                                        title={title}
+                                        date={formattedDate}
+                                        image={pictures}
+                                        category={category}
+                                        author={author}
+                                    />
+                                </Link>
+                            </li>
+                        );
+                    }
+                )}
+        </ul>
     );
 }

@@ -2,10 +2,10 @@ import React from 'react';
 import Styles from './Card.module.scss';
 import Image from 'next/image';
 interface PostProps {
-    image: string;
-    category?: string;
+    image: string | null;
+    category?: string | null;
     title: string;
-    author?: string;
+    author?: string | null;
     date: string;
 }
 export default function Card({
@@ -18,12 +18,14 @@ export default function Card({
     return (
         <div className={Styles.card}>
             <div className={Styles.imageBox}>
-                <Image
-                    className={Styles.cardImage}
-                    src={image}
-                    alt={title}
-                    fill
-                />
+                {image && (
+                    <Image
+                        className={Styles.cardImage}
+                        src={image}
+                        alt={title}
+                        fill
+                    />
+                )}
             </div>
             <div className={Styles.category}>{category} </div>
             <div className={Styles.heading}>

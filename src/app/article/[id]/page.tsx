@@ -1,45 +1,50 @@
-'use client';
-import Navigation from '@/components/Navigation';
 import Image from 'next/image';
-import useSWR from 'swr';
-import Styles from './Article.module.scss';
-import Modal from '@/components/Modal';
 import Loader from '@/components/Loader';
+import { prismaClient } from '@/lib/prismaClient';
+import Navigation from '@/components/Navigation';
+import Styles from './Article.module.scss';
+interface PostProps {
+    id: string;
+    text: string;
+    pictures: string | null;
+    createdAt?: Date;
+    updatedAt: Date;
+    author: string | null;
+    category: string | null;
+    title: string;
+}
 
-export default function Article({ params }: { params: { id: string } }) {
+export default async function Article({ params }: { params: { id: string } }) {
     const id = params.id;
-    const fetcher = (args: string) => fetch(args).then((res) => res.json());
-    const { data, error, isLoading } = useSWR(
-        `/api/posts/getPost/${id}`,
-        fetcher
-    );
-    if (error) {
-        return <Modal title="Erreur">Failed to fetch data</Modal>;
-    }
-    if (isLoading) return <Loader />;
-    if (data) {
-        const date = new Date(data.data.post.updatedAt);
-        const formattedDate = date?.toLocaleDateString('fr-FR', {
-            weekday: 'long',
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-        });
-        return (
-            <main className={Styles.main}>
-                <Navigation color="#e1e1e1" />
+    const prisma = prismaClient;
+    const post: PostProps | null = await prisma.post.findUnique({
+        where: {
+            id: id,
+        },
+    });
+    const date = post && new Date(post.updatedAt);
+    const formattedDate = date?.toLocaleDateString('fr-FR', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+    });
+    return (
+        <main className={Styles.main}>
+            <Navigation color="#e1e1e1" />
+            {!post && <Loader />}
+            {post && (
                 <article>
-                    <h1>{data.data.post.title}</h1>
-                    <p>{formattedDate}</p>
-                    <Image
-                        src={data.data.post.pictures}
-                        alt={data.data.post.title}
-                        width={300}
-                        height={300}
-                    />
-                    <p>{data.data.post.text}</p>
+                    <h1>{post.title}</h1>
+                    <span>{formattedDate}</span>
+                    <div className={Styles.imageBox}>
+                        {post.pictures && (
+                            <Image src={post.pictures} alt={post.title} fill />
+                        )}
+                    </div>
+                    <p>{post.text}</p>
                 </article>
-            </main>
-        );
-    }
+            )}
+        </main>
+    );
 }
