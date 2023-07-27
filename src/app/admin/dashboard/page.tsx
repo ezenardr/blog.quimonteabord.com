@@ -16,7 +16,7 @@ export default function Dashboard() {
         </main>
     );
 }
-export async function Main() {
+async function Main() {
     const session = await getServerSession(authOptions);
     const prisma = prismaClient;
     const posts: Array<PostProps> = await prisma.post.findMany();
@@ -69,7 +69,7 @@ export async function Main() {
     );
 }
 
-export function Articles({ posts }: { posts: Array<PostProps> }) {
+function Articles({ posts }: { posts: Array<PostProps> }) {
     return (
         <div className={Styles.articles}>
             <ul>

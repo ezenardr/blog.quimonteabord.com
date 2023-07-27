@@ -24,7 +24,7 @@ export default function BlogPage() {
         </>
     );
 }
-export async function Articles() {
+async function Articles() {
     const prisma = prismaClient;
     const posts: Array<PostProps> = await prisma.post.findMany();
     await prisma.$disconnect();
