@@ -79,7 +79,7 @@ function PostForm({
             })
                 .then((res) => {
                     setLoading(false);
-                    location.reload();
+                    location.assign('/admin/dashboard');
                     return res;
                 })
                 .catch((err) => setPostError(true));

@@ -22,6 +22,7 @@ export default async function Article({ params }: { params: { id: string } }) {
             id: id,
         },
     });
+    await prisma.$disconnect();
     const date = post && new Date(post.updatedAt);
     const formattedDate = date?.toLocaleDateString('fr-FR', {
         weekday: 'long',
@@ -36,7 +37,9 @@ export default async function Article({ params }: { params: { id: string } }) {
             {post && (
                 <article>
                     <h1>{post.title}</h1>
-                    <span>{formattedDate}</span>
+                    <p className={Styles.date}>
+                        <span>{post.author}</span>,{` ${formattedDate}`}
+                    </p>
                     <div className={Styles.imageBox}>
                         {post.pictures && (
                             <Image src={post.pictures} alt={post.title} fill />

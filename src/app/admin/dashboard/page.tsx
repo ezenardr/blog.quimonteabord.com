@@ -46,7 +46,7 @@ export async function Main() {
                 <div className={[Styles.category, Styles.box].join(' ')}>
                     <MdOutlineCategory />
                     <p>
-                        05 <br />
+                        N/A <br />
                         <span>Total categories</span>
                     </p>
                 </div>
@@ -60,7 +60,7 @@ export async function Main() {
                 <div className={[Styles.users, Styles.box].join(' ')}>
                     <AiOutlineUser />
                     <p>
-                        2000 <br />
+                        N/A <br />
                         <span>Total users</span>
                     </p>
                 </div>
