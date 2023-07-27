@@ -12,7 +12,8 @@
         color: var(--color-text-tint);
         transition: 0.3s all ease-in-out;
         position: absolute;
-        right: 2%;
+        right: 10%;
+        top: 20%;
 
         &:hover {
             color: var(--color-gray);
@@ -24,5 +25,6 @@
 @media (max-width: 900px) {
     .nav {
         justify-content: flex-start;
+        padding: 0 2rem;
     }
 }
