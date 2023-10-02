@@ -1,64 +1,39 @@
-import Link from 'next/link';
-import Navigation from '@/components/Navigation';
-import LoaderWhite from '@/components/LoaderWhite';
-import Card from '@/components/Card';
-import { prismaClient } from '@/lib/prismaClient';
-import { PostProps } from '../../types/post';
-import Styles from './blog.module.scss';
-
-export default function BlogPage() {
+import Card from '@/components/card/Card';
+import Style from './page.module.scss';
+import Navigation from '@/components/nav/Navigation';
+export default function BLog() {
     return (
         <>
-            <header className={Styles.header}>
-                <Navigation />
-                <div className={Styles.heroBox}>
-                    <h3>writing Blog</h3>
-                    <h1>
-                        WE&apos;VE GOT <span>exciting insight</span> FOR YOU
-                    </h1>
-                </div>
-            </header>
-            <main className={Styles.main}>
-                <Articles />
-            </main>
+            <Header />
+            <Articles />
         </>
     );
 }
-async function Articles() {
-    const prisma = prismaClient;
-    const posts: Array<PostProps> = await prisma.post.findMany();
-    await prisma.$disconnect();
+
+function Header() {
     return (
-        <ul className={Styles.articleList}>
-            {!posts && <LoaderWhite />}
-            {posts &&
-                posts.map(
-                    ({ id, pictures, title, updatedAt, category, author }) => {
-                        const date = new Date(updatedAt);
-                        const formattedDate = date?.toLocaleDateString(
-                            'fr-FR',
-                            {
-                                weekday: 'long',
-                                year: 'numeric',
-                                month: 'long',
-                                day: 'numeric',
-                            }
-                        );
-                        return (
-                            <li key={id}>
-                                <Link href={`/article/${id}`}>
-                                    <Card
-                                        title={title}
-                                        date={formattedDate}
-                                        image={pictures}
-                                        category={category}
-                                        author={author}
-                                    />
-                                </Link>
-                            </li>
-                        );
-                    }
-                )}
-        </ul>
+        <header>
+            <Navigation />
+            <div className={Style.heroBox}>
+                <h1>Blog</h1>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Commodi dolorum nulla nisi. Iusto quam eos dolore. Amet
+                    incidunt earum excepturi, corporis soluta in, cum ab hic
+                    inventore aspernatur, iusto qui!
+                </p>
+            </div>
+        </header>
+    );
+}
+function Articles() {
+    return (
+        <main className={Style.articles}>
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+        </main>
     );
 }

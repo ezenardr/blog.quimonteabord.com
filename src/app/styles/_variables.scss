@@ -1,0 +1,94 @@
+:root {
+    /* Size */
+    --rem: 10px;
+    --font-size: 1.6rem;
+
+    /* Container */
+    --container-sm: 62rem;
+    --container-md: 102.4rem;
+    --container-lg: 148rem;
+    // --container-lg: 116.5rem;
+    // --container-xl: 148rem;
+
+    /* Colors */
+    --color-primary: #081c15;
+    --color-secondary: #2d6a4f;
+    --color-text: #70d7b3;
+    --color-tint: #b7e4c7;
+
+    --color-red: #f72959;
+
+    --gray-50: #fafafa;
+    --gray-100: #f5f5f5;
+    --gray-200: #e5e5e5;
+    --gray-300: #d4d4d4;
+    --gray-400: #a3a3a3;
+    --gray-500: #737373;
+    --gray-600: #525252;
+    --gray-700: #404040;
+    --gray-800: #262626;
+    --gray-900: #171717;
+
+    --color-success: hsla(158, 90%, 40%, 1);
+    --color-info: hsla(212, 90%, 48%, 1);
+    --color-warning: hsla(42, 90%, 48%, 1);
+    --color-error: hsla(346, 90%, 48%, 1);
+    --color-highlight: hsl(59, 100%, 50%);
+
+    /* Spacing*/
+    --spacing-xxxs: min(0.5vw, 0.5rem);
+    --spacing-xxs: min(1vw, 1rem);
+    --spacing-xs: min(2vw, 2rem);
+    --spacing-sm: min(4vw, 4rem);
+    --spacing-smd: min(5vw, 5rem);
+    --spacing-md: min(6vw, 6rem);
+    --spacing-lg: min(8vw, 8rem);
+    --spacing-xl: min(12vw, 12rem);
+    --spacing-xxl: min(16vw, 16rem);
+    --spacing-xxxl: min(24vw, 24rem);
+
+    /* Padding*/
+    --padding-xxxs: min(1vw, 0.5rem);
+    --padding-xxs: min(2vw, 1rem);
+    --padding-xs: min(4vw, 2rem);
+    --padding-sm: min(8vw, 4rem);
+    --padding-smd: min(10vw, 5rem);
+    --padding-md: min(12vw, 6rem);
+    --padding-lg: min(16vw, 8rem);
+    --padding-xl: min(24vw, 12rem);
+    --padding-xxl: min(32vw, 16rem);
+    --padding-xxxl: min(48vw, 24rem);
+
+    /* Shadow */
+    --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+        0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+        0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1),
+        0 8px 10px -6px rgb(0 0 0 / 0.1);
+    --shadow-xxl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+    --shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+    --shadow-card: 2px 4px 12px rgb(0 0 0 / 8%);
+}
+
+.light {
+    --color-background-primary: #ffffff;
+    --color-background-secondary: var(--gray-100);
+    --color-text: var(--gray-900);
+    --color-text-medium: var(--gray-600);
+    --color-text-light: var(--gray-400);
+    --color-link: var(--gray-800);
+    --color-border: var(--gray-200);
+}
+
+.dark {
+    --color-background-primary: var(--color-primary);
+    --color-background-secondary: var(--gray-800);
+    --color-text: var(--gray-50);
+    --color-text-medium: var(--gray-400);
+    --color-text-light: var(--gray-600);
+    --color-link: var(--gray-200);
+    --color-border: var(--gray-800);
+}

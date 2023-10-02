@@ -1,0 +1,19 @@
+.heroBox {
+    text-align: center;
+    padding-top: var(--padding-smd);
+    h1 {
+        letter-spacing: 1px;
+    }
+    p {
+        letter-spacing: 0.8px;
+    }
+}
+.articles {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-xs);
+    row-gap: var(--spacing-lg);
+    flex-wrap: wrap;
+    padding-block: var(--padding-xl);
+}
