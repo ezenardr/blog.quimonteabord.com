@@ -1,0 +1,23 @@
+.statsCard {
+    padding: 4rem;
+    border-radius: 12px;
+    display: flex;
+    width: 30.4rem;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(112, 215, 179, 0.4);
+    box-shadow: 0 0px 12px 0 rgba(112, 215, 179, 0.4);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    .title {
+        font-size: 1.8rem;
+        letter-spacing: 1.2px;
+        padding-bottom: 0.7rem;
+        font-weight: bold;
+    }
+    .amount {
+        font-size: 2.8rem;
+        letter-spacing: 1.2px;
+        color: var(--color-tint);
+    }
+}

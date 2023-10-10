@@ -1,4 +1,5 @@
-import './styles/main.scss';
+import Footer from '@/components/footer/Footer';
+import '../styles/main.scss';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
@@ -23,6 +24,7 @@ export default function RootLayout({
         <html lang="fr">
             <body className={[inter.className, 'dark'].join(' ')}>
                 {children}
+                <Footer />
             </body>
         </html>
     );

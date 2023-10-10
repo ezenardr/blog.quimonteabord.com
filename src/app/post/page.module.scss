@@ -1,0 +1,38 @@
+.main {
+    max-width: var(--container-md);
+    width: min(90vw, var(--container-md));
+    margin-inline: auto;
+
+    h1 {
+        text-align: center;
+        padding-top: 6rem;
+    }
+    .author {
+        padding-bottom: 2rem;
+        color: var(--gray-300);
+    }
+    img {
+        border-radius: 1.8rem;
+        width: min(90vw, 102.4rem);
+        height: 85vh;
+        max-height: 540px;
+        margin: 0 auto;
+    }
+    .article {
+        padding-top: 6rem;
+        padding-bottom: 14rem;
+        text-align: justify;
+        letter-spacing: 1px;
+    }
+}
+
+@media (max-width: 900px) {
+    .main {
+        .author {
+            text-align: center;
+        }
+        img {
+            height: calc(100vh - 30%);
+        }
+    }
+}

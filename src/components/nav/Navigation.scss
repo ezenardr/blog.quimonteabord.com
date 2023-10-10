@@ -1,97 +1,66 @@
-nav {
-    background-color: #70d7b3;
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eaeeeb;
+    text-align: right;
     height: 80px;
-    width: 100%;
+    line-height: 70px;
+    padding-inline: 30px;
 }
-label.logo {
-    color: white;
-    font-size: 4rem;
-    line-height: 80px;
-    padding: 0 100px;
+.logo {
+    margin-inline: 30px;
+    font-size: 2.8rem;
     font-weight: bold;
 }
-.blur {
-    position: absolute;
-    top: 80px;
-    left: 0;
-    height: 95vh;
-    width: 100vw;
-    backdrop-filter: blur(11px);
+.menu {
+    display: flex;
+    gap: 2rem;
 }
-nav ul {
+.menu a {
+    line-height: 70px;
+}
+
+.checkBtn {
+    font-size: 26px;
+    line-height: 70px;
+    display: none;
+    width: 26px;
     float: right;
-    margin-right: 20px;
 }
-nav ul li {
-    display: inline-block;
-    line-height: 80px;
-    margin: 0 5px;
-}
-nav ul li a {
-    color: var(--color-primary);
-    font-size: 1.6rem;
-    padding: 7px 13px;
-    border-radius: 3px;
-    text-transform: uppercase;
-}
-a.active,
-a:hover {
-    background: var(--color-tint);
-    transition: 0.5s;
-}
-.checkbtn {
-    font-size: 50px;
-    color: white;
-    float: right;
-    line-height: 80px;
-    margin-right: 40px;
-    cursor: pointer;
+#toggle {
     display: none;
 }
-#check {
-    display: none;
-}
-@media (max-width: 952px) {
-    label.logo {
-        font-size: 30px;
-        padding-left: 50px;
+
+@media only screen and (max-width: 900px) {
+    .navigation {
+        background-color: #70d7b3;
+        border-bottom: 0px;
     }
-    nav ul li a {
-        font-size: 16px;
-    }
-}
-@media (max-width: 900px) {
-    .checkbtn {
+    .checkBtn {
         display: block;
         cursor: pointer;
     }
-    .icon {
-        width: 40px;
-        height: 40px;
-    }
-    ul {
-        position: fixed;
-        width: 70%;
-        height: 100vh;
-        background: #70d7b3;
+    .menu {
+        flex-direction: column;
+        position: absolute;
         top: 78px;
         left: -100%;
+        width: 60%;
+        height: 100vh;
+        background-color: #70d7b3;
         text-align: center;
-        transition: all 0.5s;
+        transition: 0.5s all ease;
     }
-    nav ul li {
+
+    .menu a {
+        font-size: 2rem;
+        color: var(--color-primary);
         display: block;
-        margin: 50px 0;
-        line-height: 30px;
+        margin: 0px;
     }
-    nav ul li a {
-        font-size: 20px;
-    }
-    a:hover,
-    a.active {
-        background: var(--color-tint);
-    }
-    #check:checked ~ ul {
+
+    #toggle:checked + .menu {
         left: 0;
     }
 }
