@@ -12,6 +12,7 @@ body {
     max-width: var(--container-lg);
     // max-width: 1165px;
     margin-inline: auto;
+    overflow-x: hidden;
 
     // @media screen and (max-width: 1024px) {
     //     padding-top: 7rem;
