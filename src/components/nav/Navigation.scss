@@ -2,7 +2,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #eaeeeb;
     text-align: right;
     height: 80px;
     line-height: 70px;
@@ -15,10 +14,12 @@
 }
 .menu {
     display: flex;
+    align-items: center;
     gap: 2rem;
 }
 .menu a {
-    line-height: 70px;
+    font-size: 1.8rem;
+    letter-spacing: 1.2px;
 }
 
 .checkBtn {

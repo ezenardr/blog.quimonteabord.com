@@ -1,6 +1,8 @@
 import Card from '@/components/card/Card';
 import Style from './page.module.scss';
 import Navigation from '@/components/nav/Navigation';
+import 'dotenv/config';
+
 export default function BLog() {
     return (
         <>
@@ -26,7 +28,7 @@ function Header() {
         </header>
     );
 }
-function Articles() {
+async function Articles() {
     return (
         <main className={Style.articles}>
             <Card />

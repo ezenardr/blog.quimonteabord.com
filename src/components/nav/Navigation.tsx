@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import './Navigation.scss';
+import UserBox from '../userBox/UserBox';
 
 export default function Navigation() {
     return (
@@ -18,6 +19,9 @@ export default function Navigation() {
                 </li>
                 <li>
                     <Link href="#">Facebook</Link>
+                </li>
+                <li>
+                    <UserBox />
                 </li>
             </ul>
         </nav>
