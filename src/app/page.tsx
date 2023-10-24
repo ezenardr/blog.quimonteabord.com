@@ -2,12 +2,16 @@ import Card from '@/components/card/Card';
 import Style from './page.module.scss';
 import Navigation from '@/components/nav/Navigation';
 import 'dotenv/config';
-
-export default function BLog() {
+import SignUp from '@/components/signup/SignUp';
+type Props = {
+    searchParams: Record<string, string> | null | undefined;
+};
+export default function BLog({ searchParams }: Props) {
     return (
         <>
             <Header />
             <Articles />
+            {searchParams?.newUser === 'true' && <SignUp />}
         </>
     );
 }

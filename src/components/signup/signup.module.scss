@@ -17,6 +17,22 @@
         max-height: 560px;
         display: flex;
         align-items: center;
+        position: relative;
+        .close {
+            color: #000;
+            position: absolute;
+            top: 0;
+            right: 0;
+            font-size: 42px;
+            padding: 1px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: 0.3s all ease;
+            &:hover {
+                background-color: rgba(45, 106, 79, 1);
+                color: #fff;
+            }
+        }
     }
 
     .loginFormBox {
@@ -40,10 +56,9 @@
             color: var(--color-primary);
 
             label {
-                padding-bottom: 1rem;
+                padding-block: 1rem;
             }
             input {
-                margin-bottom: 1rem;
                 padding: 1rem 1.5rem;
                 outline: none;
                 border-radius: 2rem;
