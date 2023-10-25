@@ -1,73 +1,59 @@
 'use client';
-import { useState } from 'react';
 import { z } from 'zod';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
+import { signIn } from 'next-auth/react';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
 import Style from './signup.module.scss';
 
-const userSchema = z.object({
-    name: z.string(),
-    email: z.string().email({ message: 'Addresse Email Invalide' }),
-    password: z
-        .string()
-        .min(8, { message: 'Veuillez insérer 8 caractères au minimum' }),
-});
+const userSchema = z
+    .object({
+        name: z.string(),
+        email: z.string().email({ message: 'Addresse Email Invalide' }),
+        password: z
+            .string()
+            .min(8, { message: 'Veuillez insérer 8 caractères au minimum' }),
+        confirmPassword: z.string(),
+    })
+    .refine((data) => data.password === data.confirmPassword, {
+        message: 'Les mots de passes doivent être Identique',
+        path: ['confirmPassword'],
+    });
 
-type FormData = {
-    name?: string;
-    email?: string;
-    password?: string;
-};
-type Error = {
-    error?: boolean;
-    message?: string;
-};
+type TUserSchema = z.infer<typeof userSchema>;
 
 export default function SignUp() {
-    const [formData, setFormData] = useState<FormData>({});
-    const [emailError, setEmailError] = useState<Error>({ error: false });
-    const [passError, setPassError] = useState<Error>({ error: false });
+    const {
+        register,
+        handleSubmit,
+        formState: { errors, isSubmitting },
+        reset,
+    } = useForm<TUserSchema>({
+        resolver: zodResolver(userSchema),
+    });
 
     const router = useRouter();
-
-    async function submitHandler(e: any) {
-        e.preventDefault();
-        toast('Patientez pour la création de votre compte');
-        const result = userSchema.safeParse(formData);
-        if (!result.success) {
-            const errors = result.error.format();
-            setEmailError({
-                error: true,
-                message: errors.email?._errors.join(', '),
-            });
-            setPassError({
-                error: true,
-                message: errors.password?._errors.join(', '),
-            });
-        } else {
-            try {
-                const res = await fetch('http://localhost:3000/api/user', {
-                    method: 'POST',
-                    body: JSON.stringify(formData),
-                    headers: {
-                        'content-type': 'application/json',
-                    },
-                });
-                if (res.ok) {
-                    toast.success(
-                        'Compte utilisateur crée avec succèss \n Connectez-vous !'
-                    );
-                    router.push('/');
-                } else {
-                    toast.error(
-                        "Erreur de serveur. Si l'erreur persiste, contactez le support"
-                    );
-                }
-            } catch (error) {
-                console.log(error);
-            }
+    async function submitHandler(data: TUserSchema) {
+        toast.loading('Patientez...');
+        const res = await fetch('http://localhost:3000/api/user', {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'content-type': 'application/json',
+            },
+        });
+        if (!res.ok) {
+            toast.error(
+                `${res.statusText}. Si l'erreur persiste, contacter le support`
+            );
         }
+        if (res.ok) {
+            toast.success('Compte créer. Connectez-vous !');
+            signIn(undefined, { callbackUrl: 'http://localhost:3000/' });
+        }
+        reset();
     }
     return (
         <div className={Style.wrapper}>
@@ -86,58 +72,46 @@ export default function SignUp() {
                     </p>
                     <form
                         className={Style.login}
-                        onSubmit={(e) => submitHandler(e)}
+                        onSubmit={handleSubmit(submitHandler)}
                     >
-                        <label htmlFor="name">Nom</label>
                         <input
+                            {...register('name')}
                             type="text"
-                            id="name"
-                            placeholder="Jane Doe"
-                            value={formData.name}
-                            onChange={(e) =>
-                                setFormData({
-                                    ...formData,
-                                    name: e.target.value,
-                                })
-                            }
+                            placeholder="Nom d'utilisateur"
                         />
-                        <label htmlFor="email">Email</label>
                         <input
+                            {...register('email')}
                             type="email"
-                            id="email"
                             placeholder="email@example.com"
-                            value={formData.email}
-                            onChange={(e) =>
-                                setFormData({
-                                    ...formData,
-                                    email: e.target.value,
-                                })
-                            }
                         />
-                        {emailError.error && (
-                            <p style={{ color: 'red', fontSize: '14px' }}>
-                                {emailError?.message}
-                            </p>
+                        {errors.email && (
+                            <p
+                                className={Style.error}
+                            >{`${errors.email.message}`}</p>
                         )}
-                        <label htmlFor="password">Mot de passe</label>
                         <input
+                            {...register('password')}
                             type="password"
-                            id="password"
-                            placeholder="Enter your Password"
-                            value={formData.password}
-                            onChange={(e) =>
-                                setFormData({
-                                    ...formData,
-                                    password: e.target.value,
-                                })
-                            }
+                            placeholder="Mot de passe"
                         />
-                        {passError.error && (
-                            <p style={{ color: 'red', fontSize: '14px' }}>
-                                {passError?.message}
-                            </p>
+                        {errors.password && (
+                            <p
+                                className={Style.error}
+                            >{`${errors.password.message}`}</p>
                         )}
-                        <button>S&apos;inscrire</button>
+                        <input
+                            {...register('confirmPassword')}
+                            type="password"
+                            placeholder="Confirmez Votre Mot de  Passe"
+                        />
+                        {errors.confirmPassword && (
+                            <p
+                                className={Style.error}
+                            >{`${errors.confirmPassword?.message}`}</p>
+                        )}
+                        <button type="submit" disabled={isSubmitting}>
+                            S&apos;inscrire
+                        </button>
                     </form>
                 </div>
             </div>

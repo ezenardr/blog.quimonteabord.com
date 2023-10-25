@@ -27,7 +27,7 @@ export default function RootLayout({
             <body className={[inter.className, 'dark'].join(' ')}>
                 <AuthProvider>
                     {children}
-                    <Toaster />
+                    <Toaster richColors />
                     <Footer />
                 </AuthProvider>
             </body>

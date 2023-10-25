@@ -56,16 +56,21 @@
             color: var(--color-primary);
 
             label {
-                padding-block: 1rem;
+                padding-block: 1.4rem;
             }
             input {
                 padding: 1rem 1.5rem;
                 outline: none;
                 border-radius: 2rem;
                 border: 1.5px solid var(--gray-400);
+                margin-top: 1rem;
                 &:focus {
                     border-color: #70d7b3;
                 }
+            }
+            .error {
+                color: var(--color-error);
+                font-size: 1.4rem;
             }
             button {
                 margin-top: 4rem;
@@ -82,6 +87,13 @@
                 &:hover {
                     background-color: #70d7b3;
                     color: var(--color-primary);
+                }
+                &:disabled {
+                    background-color: var(--gray-400);
+                    cursor: not-allowed;
+                    &:hover {
+                        color: #fff;
+                    }
                 }
             }
         }
