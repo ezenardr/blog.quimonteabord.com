@@ -1,9 +1,9 @@
 import Navigation from '@/components/nav/Navigation';
-import Style from './page.module.scss';
 import db from '@/db/dbConnect';
 import * as schema from '@/db/schema';
 import { eq } from 'drizzle-orm';
 import ImageComp from '@/components/ImageComponent/ImageComp';
+import Style from './page.module.scss';
 
 type TSearchParams = {
     searchParams: Record<string, string> | null | undefined;
@@ -34,7 +34,7 @@ export default async function Page({ searchParams }: TSearchParams) {
                         title={article[0].title}
                     />
                     <p className={Style.author}>
-                        {`${article[0].author_name} le ${dateFormat} - 5 min read`}
+                        {`${article[0].author_name} - ${dateFormat}`}
                     </p>
                     <div className={Style.article}>
                         {body?.map((str) => {
