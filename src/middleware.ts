@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 
 export default withAuth(
     function middleware(req) {
-        console.log('token: ', req.nextauth.token);
+        // console.log('token: ', req.nextauth.token);
 
         if (
             req.nextUrl.pathname.startsWith('/admin') &&

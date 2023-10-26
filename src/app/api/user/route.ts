@@ -2,22 +2,7 @@ import db from '@/db/dbConnect';
 import * as schema from '@/db/schema';
 import { v4 as uuidv4 } from 'uuid';
 import * as bcrypt from 'bcrypt';
-import { z } from 'zod';
-
-const userSchema = z
-    .object({
-        name: z.string(),
-        email: z.string().email({ message: 'Addresse Email Invalide' }),
-        password: z
-            .string()
-            .min(8, { message: 'Veuillez insérer 8 caractères au minimum' }),
-        confirmPassword: z.string(),
-    })
-    .refine((data) => data.password === data.confirmPassword, {
-        message: 'Les mots de passes doivent être Identique',
-        path: ['confirmPassword'],
-    });
-type TUserSchema = z.infer<typeof userSchema>;
+import { type TUserSchema } from '@/lib/type';
 
 type User = {
     id: string;
