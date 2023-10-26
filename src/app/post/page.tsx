@@ -1,27 +1,53 @@
 import Navigation from '@/components/nav/Navigation';
 import Style from './page.module.scss';
-import Image from 'next/image';
-import Test from '@/img/card-test.jpg';
-export default function Page() {
+import db from '@/db/dbConnect';
+import * as schema from '@/db/schema';
+import { eq } from 'drizzle-orm';
+import ImageComp from '@/components/ImageComponent/ImageComp';
+
+type TSearchParams = {
+    searchParams: Record<string, string> | null | undefined;
+};
+export default async function Page({ searchParams }: TSearchParams) {
+    const article =
+        searchParams &&
+        (await db
+            .select()
+            .from(schema.post)
+            .where(eq(schema.post.post_id, searchParams.id)));
+    const body = article && article[0].body.split('<br>');
+    const options: Intl.DateTimeFormatOptions = {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+    };
+    const dateFormat =
+        article && article[0].createdAt?.toLocaleDateString('fr-FR', options);
     return (
         <>
             <Navigation />
-            <main className={Style.main}>
-                <h1>Lorem ipsum dolor</h1>
-                <p className={Style.author}>
-                    By Ixartz on April 24, 2022 - 5 min read
-                </p>
-                <Image src={Test} alt="Blog image" width={1050} height={540} />
-                <p className={Style.article}>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Dolor reprehenderit possimus perspiciatis vero dolore! In
-                    dicta explicabo voluptate fugit, deserunt quidem ut rem
-                    dignissimos aperiam ex voluptates exercitationem quos
-                    quaerat qui adipisci repellat perferendis beatae unde
-                    dolorem. Ea, sunt sed repudiandae corrupti ut in non dolore
-                    quasi officia aspernatur ab!
-                </p>
-            </main>
+            {article && (
+                <main className={Style.main}>
+                    <h1>{article[0].title}</h1>
+                    <ImageComp
+                        img={article[0].image}
+                        title={article[0].title}
+                    />
+                    <p className={Style.author}>
+                        {`${article[0].author_name} le ${dateFormat} - 5 min read`}
+                    </p>
+                    <div className={Style.article}>
+                        {body?.map((str) => {
+                            return (
+                                <div key={Math.floor(Math.random() * 100)}>
+                                    <p>{str}</p>
+                                    <br></br>
+                                </div>
+                            );
+                        })}
+                    </div>
+                </main>
+            )}
         </>
     );
 }

@@ -12,13 +12,15 @@ export default function Navigation() {
             <input type="checkbox" id="toggle" />
             <ul className="menu">
                 <li>
-                    <Link href="#">Accueil</Link>
+                    <Link href="https://quimonteabord.com">Accueil</Link>
                 </li>
                 <li>
                     <Link href="/">Blog</Link>
                 </li>
                 <li>
-                    <Link href="#">Facebook</Link>
+                    <Link href="https://web.facebook.com/profile.php?id=100091865442401">
+                        Facebook
+                    </Link>
                 </li>
                 <li>
                     <UserBox />

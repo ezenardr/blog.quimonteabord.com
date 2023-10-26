@@ -16,9 +16,9 @@
     flex-direction: column;
     text-align: center;
     align-items: center;
-    justify-content: space-around;
     height: 50%;
-    padding-block: var(--padding-sm);
+    padding-top: 1rem;
+    padding-bottom: var(--padding-sm);
 
     h2,
     p {
@@ -27,6 +27,6 @@
 
     .tag {
         color: var(--color-secondary);
-        // padding-bottom: 3rem;
+        padding-bottom: 1rem;
     }
 }

@@ -36,6 +36,7 @@ export default function PostModal() {
             title: title.value,
             body: body.value,
             image: imageData,
+            author_name: session?.user.name,
         };
         const parsedData = postSchema.safeParse(formData);
         if (parsedData.success) {

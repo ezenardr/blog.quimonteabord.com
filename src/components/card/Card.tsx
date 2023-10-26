@@ -1,19 +1,41 @@
-import Image from 'next/image';
 import Style from './Card.module.scss';
-import imgTest from '@/img/card-test.jpg';
+import ImageComp from '../ImageComponent/ImageComp';
+import Link from 'next/link';
 
-export default function Card() {
+type ArticleProps = {
+    image: string;
+    createdAt?: Date | null;
+    updatedAt?: Date | null;
+    post_id?: string;
+    title: string;
+    body: string;
+    author_id?: string;
+    author_name?: string;
+};
+export default function Card({
+    image,
+    title,
+    body,
+    createdAt,
+    post_id,
+}: ArticleProps) {
+    const options: Intl.DateTimeFormatOptions = {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+    };
+
+    const dateFormat = createdAt?.toLocaleDateString('fr-FR', options);
     return (
-        <div className={Style.card}>
-            <Image src={imgTest} alt="test" />
-            <div className={Style.textBox}>
-                <h2>Lorem ipsum dolor sit</h2>
-                <p className={Style.tag}>Date, 5 min read</p>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Maiores, aliquam!
-                </p>
-            </div>
-        </div>
+        <li className={Style.card}>
+            <Link href={`/post?id=${post_id}`}>
+                <ImageComp img={image} title={title} />
+                <div className={Style.textBox}>
+                    <h2>{title}</h2>
+                    <p className={Style.tag}>{dateFormat}</p>
+                    <p>{body.split(' ').slice(0, 7).join(' ')}</p>
+                </div>
+            </Link>
+        </li>
     );
 }

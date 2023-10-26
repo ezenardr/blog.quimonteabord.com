@@ -1,5 +1,5 @@
 .main {
-    max-width: var(--container-md);
+    max-width: 85rem;
     width: min(90vw, var(--container-md));
     margin-inline: auto;
 
@@ -8,21 +8,23 @@
         padding-top: 6rem;
     }
     .author {
-        padding-bottom: 2rem;
+        padding-block: 1rem;
         color: var(--gray-300);
     }
     img {
         border-radius: 1.8rem;
-        width: min(90vw, 102.4rem);
+        width: min(90vw, 85rem);
         height: 85vh;
         max-height: 540px;
         margin: 0 auto;
     }
     .article {
-        padding-top: 6rem;
+        padding-top: 2rem;
         padding-bottom: 14rem;
         text-align: justify;
         letter-spacing: 1px;
+        line-height: 1.3;
+        font-size: 1.8rem;
     }
 }
 

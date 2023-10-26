@@ -73,6 +73,7 @@ export const post = pgTable('post', {
     title: text('title').unique().notNull(),
     body: text('text').notNull(),
     image: text('image').notNull(),
+    author_name: text('author_name').notNull(),
     author_id: text('author_id').notNull(),
     createdAt: timestamp('created_at').default(date),
     updatedAt: timestamp('updated_at').default(date),
@@ -88,6 +89,7 @@ export const postsRelations = relations(post, ({ one, many }) => ({
 export const comment = pgTable('comment', {
     comment_id: text('comment_id').primaryKey().unique().notNull(),
     text: text('text').notNull(),
+    author_name: text('author_name').notNull(),
     author_id: text('author_id').notNull(),
     post_id: text('post_id').notNull(),
     createdAt: timestamp('created_at').default(date),
@@ -101,6 +103,7 @@ export const commentsRelations = relations(comment, ({ one }) => ({
 }));
 
 export const likes = pgTable('likes', {
+    author_name: text('author_name').notNull(),
     count: serial('count').notNull(),
     post_id: text('post_id').primaryKey(),
 });

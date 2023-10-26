@@ -1,7 +1,7 @@
 {
   "version": "5",
   "dialect": "pg",
-  "id": "f431a192-56be-4b1d-8dfa-5dbad431d498",
+  "id": "53b89ec9-9f57-4d84-9ee5-b4e82ca54d7b",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "account": {
@@ -118,6 +118,12 @@
           "primaryKey": false,
           "notNull": true
         },
+        "author_name": {
+          "name": "author_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
         "author_id": {
           "name": "author_id",
           "type": "text",
@@ -135,14 +141,14 @@
           "type": "timestamp",
           "primaryKey": false,
           "notNull": false,
-          "default": "'2023-10-22 14:40:09.401'"
+          "default": "'2023-10-26 15:25:40.310'"
         },
         "updated_at": {
           "name": "updated_at",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": false,
-          "default": "'2023-10-22 14:40:09.401'"
+          "default": "'2023-10-26 15:25:40.310'"
         }
       },
       "indexes": {},
@@ -162,6 +168,12 @@
       "name": "likes",
       "schema": "",
       "columns": {
+        "author_name": {
+          "name": "author_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
         "count": {
           "name": "count",
           "type": "serial",
@@ -208,6 +220,12 @@
           "primaryKey": false,
           "notNull": true
         },
+        "author_name": {
+          "name": "author_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
         "author_id": {
           "name": "author_id",
           "type": "text",
@@ -219,14 +237,14 @@
           "type": "timestamp",
           "primaryKey": false,
           "notNull": false,
-          "default": "'2023-10-22 14:40:09.401'"
+          "default": "'2023-10-26 15:25:40.310'"
         },
         "updated_at": {
           "name": "updated_at",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": false,
-          "default": "'2023-10-22 14:40:09.401'"
+          "default": "'2023-10-26 15:25:40.310'"
         }
       },
       "indexes": {},
@@ -344,14 +362,14 @@
           "type": "timestamp",
           "primaryKey": false,
           "notNull": false,
-          "default": "'2023-10-22 14:40:09.401'"
+          "default": "'2023-10-26 15:25:40.310'"
         },
         "updated_at": {
           "name": "updated_at",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": false,
-          "default": "'2023-10-22 14:40:09.401'"
+          "default": "'2023-10-26 15:25:40.310'"
         }
       },
       "indexes": {},

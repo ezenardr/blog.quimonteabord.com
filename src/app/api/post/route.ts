@@ -10,6 +10,7 @@ export async function POST(request: NextRequest) {
         body: body.body,
         image: body.image,
         post_id: uuidv4(),
+        author_name: body.author_name,
     });
     return NextResponse.json({ success: true, newPost });
 }

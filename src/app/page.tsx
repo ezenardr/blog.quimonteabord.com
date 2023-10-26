@@ -1,8 +1,8 @@
 import Card from '@/components/card/Card';
 import Style from './page.module.scss';
 import Navigation from '@/components/nav/Navigation';
-import 'dotenv/config';
 import SignUp from '@/components/signup/SignUp';
+import db from '@/db/dbConnect';
 type Props = {
     searchParams: Record<string, string> | null | undefined;
 };
@@ -33,13 +33,26 @@ function Header() {
     );
 }
 async function Articles() {
+    const articles = await db.query.post.findMany();
     return (
-        <main className={Style.articles}>
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
+        <main>
+            <ul className={Style.articles}>
+                {articles &&
+                    articles.map(
+                        ({ image, body, title, createdAt, post_id }) => {
+                            return (
+                                <Card
+                                    key={post_id}
+                                    image={image}
+                                    title={title}
+                                    body={body}
+                                    createdAt={createdAt}
+                                    post_id={post_id}
+                                />
+                            );
+                        }
+                    )}
+            </ul>
         </main>
     );
 }

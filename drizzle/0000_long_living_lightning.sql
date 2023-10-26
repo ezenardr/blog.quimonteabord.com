@@ -16,14 +16,16 @@ CREATE TABLE IF NOT EXISTS "account" (
 CREATE TABLE IF NOT EXISTS "comment" (
 	"comment_id" text PRIMARY KEY NOT NULL,
 	"text" text NOT NULL,
+	"author_name" text NOT NULL,
 	"author_id" text NOT NULL,
 	"post_id" text NOT NULL,
-	"created_at" timestamp DEFAULT '2023-10-22 14:40:09.401',
-	"updated_at" timestamp DEFAULT '2023-10-22 14:40:09.401',
+	"created_at" timestamp DEFAULT '2023-10-26 15:25:40.310',
+	"updated_at" timestamp DEFAULT '2023-10-26 15:25:40.310',
 	CONSTRAINT "comment_comment_id_unique" UNIQUE("comment_id")
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "likes" (
+	"author_name" text NOT NULL,
 	"count" serial NOT NULL,
 	"post_id" text PRIMARY KEY NOT NULL
 );
@@ -33,9 +35,10 @@ CREATE TABLE IF NOT EXISTS "post" (
 	"title" text NOT NULL,
 	"text" text NOT NULL,
 	"image" text NOT NULL,
+	"author_name" text NOT NULL,
 	"author_id" text NOT NULL,
-	"created_at" timestamp DEFAULT '2023-10-22 14:40:09.401',
-	"updated_at" timestamp DEFAULT '2023-10-22 14:40:09.401',
+	"created_at" timestamp DEFAULT '2023-10-26 15:25:40.310',
+	"updated_at" timestamp DEFAULT '2023-10-26 15:25:40.310',
 	CONSTRAINT "post_post_id_unique" UNIQUE("post_id"),
 	CONSTRAINT "post_title_unique" UNIQUE("title")
 );
@@ -54,8 +57,8 @@ CREATE TABLE IF NOT EXISTS "user" (
 	"image" text,
 	"emailVerified" boolean DEFAULT false,
 	"role" text DEFAULT 'user' NOT NULL,
-	"created_at" timestamp DEFAULT '2023-10-22 14:40:09.401',
-	"updated_at" timestamp DEFAULT '2023-10-22 14:40:09.401',
+	"created_at" timestamp DEFAULT '2023-10-26 15:25:40.310',
+	"updated_at" timestamp DEFAULT '2023-10-26 15:25:40.310',
 	CONSTRAINT "user_id_unique" UNIQUE("id"),
 	CONSTRAINT "user_email_unique" UNIQUE("email")
 );
