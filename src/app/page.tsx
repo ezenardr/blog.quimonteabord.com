@@ -23,10 +23,11 @@ function Header() {
             <div className={Style.heroBox}>
                 <h1>Blog</h1>
                 <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Commodi dolorum nulla nisi. Iusto quam eos dolore. Amet
-                    incidunt earum excepturi, corporis soluta in, cum ab hic
-                    inventore aspernatur, iusto qui!
+                    L&apos;écriture est le navire qui nous emporte vers des
+                    mondes inconnus, et nous est votre billet pour cette
+                    aventure extraordinaire. Que vous soyez un écrivain en
+                    herbe, un amoureux de la littérature ou simplement un
+                    rêveur, vous trouverez ici une place qui vous est réservée.
                 </p>
             </div>
         </header>

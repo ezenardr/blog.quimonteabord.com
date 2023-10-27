@@ -3,12 +3,15 @@ import { ChangeEvent, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { toast } from 'sonner';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import Style from './postModal.module.scss';
 import { postSchema } from '@/lib/type';
 
 export default function PostModal() {
     const { data: session } = useSession();
+    const router = useRouter();
     const [imageData, setImageData] = useState<string | ArrayBuffer | null>();
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     function toBase64(file: File) {
         const reader = new FileReader();
@@ -28,6 +31,7 @@ export default function PostModal() {
         toBase64(file);
     }
     function handleSubmit(e: any) {
+        setIsLoading(true);
         toast.loading('Patientez...');
         e.preventDefault();
         const [image, title, body, button] = e.target;
@@ -47,9 +51,11 @@ export default function PostModal() {
             }).then((res) => {
                 if (res.ok) {
                     toast.success('Article posté');
+                    router.push('/admin/posts?newPost=false');
                 } else {
                     toast.error("L'article n'a pas été posté");
                 }
+                setIsLoading(false);
             });
         }
     }
@@ -63,14 +69,20 @@ export default function PostModal() {
                 accept="image/png image/jpg"
                 onChange={handleChange}
                 className={Style.image}
+                required
             />
             <input
                 type="text"
                 className={Style.title}
                 placeholder="Titre de l'article"
+                required
             />
-            <textarea className={Style.post} placeholder="Corp de l'article" />
-            <button type="submit" className={Style.btn}>
+            <textarea
+                className={Style.post}
+                placeholder="Corp de l'article"
+                required
+            />
+            <button type="submit" disabled={isLoading} className={Style.btn}>
                 Envoyer
             </button>
         </form>

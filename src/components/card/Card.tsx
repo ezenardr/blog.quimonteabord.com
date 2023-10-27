@@ -33,7 +33,7 @@ export default function Card({
                 <div className={Style.textBox}>
                     <h2>{title}</h2>
                     <p className={Style.tag}>{dateFormat}</p>
-                    <p>{body.split(' ').slice(0, 7).join(' ')}</p>
+                    <p>{`${body.split(' ').slice(0, 7).join(' ')}...`}</p>
                 </div>
             </Link>
         </li>

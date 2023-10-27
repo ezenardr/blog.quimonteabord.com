@@ -6,6 +6,8 @@
     }
     p {
         letter-spacing: 0.8px;
+        padding-inline: var(--spacing-lg);
+        color: var(--gray-100);
     }
 }
 .articles {
