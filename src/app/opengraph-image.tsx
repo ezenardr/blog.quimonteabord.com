@@ -4,7 +4,7 @@ import { ImageResponse } from 'next/server';
 export const runtime = 'edge';
 
 // Image metadata
-export const alt = 'ezenardr | Web Developer';
+export const alt = 'Blog | Qui monte à Bord';
 export const size = {
     width: 1065,
     height: 500,
@@ -40,7 +40,7 @@ export default async function Image() {
                     }}
                 >
                     Célébrons le pouvoir des mots pour inspirer, émouvoir et
-                    transformer
+                    transformer !
                 </span>
             </div>
         ),
