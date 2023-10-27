@@ -28,7 +28,7 @@ export default function Card({
     const dateFormat = createdAt?.toLocaleDateString('fr-FR', options);
     return (
         <li className={Style.card}>
-            <Link href={`/post?id=${post_id}`}>
+            <Link href={`/post/${post_id}`}>
                 <ImageComp img={image} title={title} />
                 <div className={Style.textBox}>
                     <h2>{title}</h2>
