@@ -3,6 +3,8 @@ import Style from './page.module.scss';
 import Navigation from '@/components/nav/Navigation';
 import SignUp from '@/components/signup/SignUp';
 import db from '@/db/dbConnect';
+import { Suspense } from 'react';
+import Loading from './loading';
 type Props = {
     searchParams: Record<string, string> | null | undefined;
 };
@@ -10,7 +12,9 @@ export default function BLog({ searchParams }: Props) {
     return (
         <>
             <Header />
-            <Articles />
+            <Suspense fallback={<Loading />}>
+                <Articles />
+            </Suspense>
             {searchParams?.newUser === 'true' && <SignUp />}
         </>
     );
@@ -19,7 +23,6 @@ export default function BLog({ searchParams }: Props) {
 function Header() {
     return (
         <header>
-            <Navigation />
             <div className={Style.heroBox}>
                 <h1>Blog</h1>
                 <p>

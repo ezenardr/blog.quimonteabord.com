@@ -1,6 +1,7 @@
 import Style from './Card.module.scss';
 import ImageComp from '../ImageComponent/ImageComp';
 import Link from 'next/link';
+import { toast } from 'sonner';
 
 type ArticleProps = {
     image: string;

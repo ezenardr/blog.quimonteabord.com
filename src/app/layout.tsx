@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google';
 import AuthProvider from './AuthProvider';
 import { Toaster } from 'sonner';
 import Footer from '@/components/footer/Footer';
+import Navigation from '@/components/nav/Navigation';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -26,6 +27,7 @@ export default function RootLayout({
         <html lang="fr">
             <body className={[inter.className, 'dark'].join(' ')}>
                 <AuthProvider>
+                    <Navigation />
                     {children}
                     <Toaster richColors />
                     <Footer />

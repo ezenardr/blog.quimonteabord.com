@@ -5,6 +5,8 @@ import { eq } from 'drizzle-orm';
 import type { Metadata, ResolvingMetadata } from 'next';
 import ImageComp from '@/components/ImageComponent/ImageComp';
 import Style from './page.module.scss';
+import { Suspense } from 'react';
+import Loading from '@/app/loading';
 
 type MetadataProps = {
     params: { id: string };
@@ -46,27 +48,28 @@ export default async function Page({ params }: TParams) {
         article && article[0].createdAt?.toLocaleDateString('fr-FR', options);
     return (
         <>
-            <Navigation />
             {article && (
                 <main className={Style.main}>
-                    <h1>{article[0].title}</h1>
-                    <ImageComp
-                        img={article[0].image}
-                        title={article[0].title}
-                    />
-                    <p className={Style.author}>
-                        {`${article[0].author_name} - ${dateFormat}`}
-                    </p>
-                    <div className={Style.article}>
-                        {body?.map((str) => {
-                            return (
-                                <div key={Math.floor(Math.random() * 100)}>
-                                    <p>{str}</p>
-                                    <br></br>
-                                </div>
-                            );
-                        })}
-                    </div>
+                    <Suspense fallback={<Loading />}>
+                        <h1>{article[0].title}</h1>
+                        <ImageComp
+                            img={article[0].image}
+                            title={article[0].title}
+                        />
+                        <p className={Style.author}>
+                            {`${article[0].author_name} - ${dateFormat}`}
+                        </p>
+                        <div className={Style.article}>
+                            {body?.map((str) => {
+                                return (
+                                    <div key={Math.floor(Math.random() * 100)}>
+                                        <p>{str}</p>
+                                        <br></br>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </Suspense>
                 </main>
             )}
         </>
