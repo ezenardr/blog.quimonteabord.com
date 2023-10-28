@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
             allow: '/',
             disallow: '/admin/',
         },
-        sitemap: 'https://quimonteabord.com/sitemap.xml',
+        sitemap: 'https://blog.quimonteabord.com/sitemap.xml',
     };
 }
