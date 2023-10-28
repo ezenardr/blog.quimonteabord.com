@@ -7,6 +7,14 @@ import UserBox from '@/components/userBox/UserBox';
 import TitleBox from '@/components/pageTitleBox/TitleBox';
 import StatsCard from '@/components/statsCard/StatsCard';
 import VisitorGraph from '@/components/graphs/VisitorGraph';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    robots: {
+        index: false,
+        nocache: true,
+    },
+};
 export default function Page() {
     return (
         <main className={Style.main}>

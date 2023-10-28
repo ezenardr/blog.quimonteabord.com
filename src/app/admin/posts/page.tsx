@@ -3,7 +3,14 @@ import Style from './post.module.scss';
 import UserBox from '@/components/userBox/UserBox';
 import PostModal from '@/components/postModal/PostModal';
 import Link from 'next/link';
+import { Metadata } from 'next';
 
+export const metadata: Metadata = {
+    robots: {
+        index: false,
+        nocache: true,
+    },
+};
 type Props = {
     searchParams: Record<string, string> | null | undefined;
 };
