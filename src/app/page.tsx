@@ -1,6 +1,5 @@
 import Card from '@/components/card/Card';
 import Style from './page.module.scss';
-import Navigation from '@/components/nav/Navigation';
 import SignUp from '@/components/signup/SignUp';
 import db from '@/db/dbConnect';
 import { Suspense } from 'react';
